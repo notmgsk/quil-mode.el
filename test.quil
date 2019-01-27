@@ -1,0 +1,9 @@
+DEFGATE TESTGATE(%theta) A B:
+    0, i,
+    1, COS(-i*%theta)
+
+DEFCIRCUIT TESTCIRC A B:    
+    H A
+    CNOT A B
+
+CONTROLLED DAGGER TESTCIRC 0 1
