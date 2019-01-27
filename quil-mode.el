@@ -40,10 +40,15 @@
                  "STORE" "EQ" "GT" "GE" "LT" "LE" "NOP" "INCLUDE" "PRAGMA" "PLUS" "MINUS"
                  "CONTROLLED" "DAGGER" "DECLARE" "HALT")
              symbol-end)
-        (,(rx symbol-start (or "SIN" "COS" "SQRT" "EXP" "CIS" (+ (? "-") "pi") (+ (? "-") "i"))) . font-lock-builtin-face)
+        (,(rx symbol-start (or "SIN" "COS" "SQRT" "EXP" "CIS" (+ (? "-") "pi") (+ (? "-") "i")
+                               "I" "X" "Y" "Z" "H" "CZ" "PHASE" "CPHASE" "S" "T" "CPHASE00" "CPHASE01"
+                               "CPHASE10" "RX" "RY" "RZ" "CNOT" "CCNOT" "PSWAP" "SWAP" "ISWAP" "CSWAP")
+              symbol-end)
+         . font-lock-builtin-face)
         (,(rx symbol-start (or "DEFGATE" "DEFCIRCUIT") (1+ space) (group (1+ (or word ?_))) (0+ (or space word ?_)))
          (1 font-lock-function-name-face))
-        (,(rx (+ (? "-") ?%) (1+ (or word ?_))) . font-lock-variable-name-face)))
+        (,(rx (+ (? "-") ?%) (1+ (or word ?_)))
+         . font-lock-variable-name-face)))
 
 (defvar quil-mode-syntax-table nil "Quil mode syntax table")
 (setf quil-mode-syntax-table
