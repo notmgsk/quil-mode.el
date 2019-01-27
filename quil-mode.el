@@ -30,32 +30,32 @@
 ;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.quil\\'" . quil-mode))
 
-(defvar quil-font-lock-keywords nil "Quil mode syntax highlighting")
-(setf quil-font-lock-keywords
-      `(;; Keywords
-        ,(rx symbol-start
-             (or "DEFGATE" "DEFCIRCUIT" "MEASURE" "RESET" "HALT" "JUMP" "JUMPWHEN"
-                 "JUMPUNLESS" "WAIT" "DECLARE" "NEG" "NOT" "TRUE" "FALSE" "AND" "OR" "LABEL"
-                 "IOR" "XOR" "ADD" "SUB" "MUL" "DIV" "MOVE" "EXCHANGE" "CONVERT" "LOAD"
-                 "STORE" "EQ" "GT" "GE" "LT" "LE" "NOP" "INCLUDE" "PRAGMA" "PLUS" "MINUS"
-                 "CONTROLLED" "DAGGER" "DECLARE" "HALT")
-             symbol-end)
-        (,(rx symbol-start (or "SIN" "COS" "SQRT" "EXP" "CIS" (+ (? "-") "pi") (+ (? "-") "i")
-                               "I" "X" "Y" "Z" "H" "CZ" "PHASE" "CPHASE" "S" "T" "CPHASE00" "CPHASE01"
-                               "CPHASE10" "RX" "RY" "RZ" "CNOT" "CCNOT" "PSWAP" "SWAP" "ISWAP" "CSWAP")
-              symbol-end)
-         . font-lock-builtin-face)
-        (,(rx symbol-start (or "DEFGATE" "DEFCIRCUIT") (1+ space) (group (1+ (or word ?_))) (0+ (or space word ?_)))
-         (1 font-lock-function-name-face))
-        (,(rx (+ (? "-") ?%) (1+ (or word ?_)))
-         . font-lock-variable-name-face)))
+(defvar quil-font-lock-keywords
+  `(;; Keywords
+    ,(rx symbol-start
+         (or "DEFGATE" "DEFCIRCUIT" "MEASURE" "RESET" "HALT" "JUMP" "JUMPWHEN"
+             "JUMPUNLESS" "WAIT" "DECLARE" "NEG" "NOT" "TRUE" "FALSE" "AND" "OR" "LABEL"
+             "IOR" "XOR" "ADD" "SUB" "MUL" "DIV" "MOVE" "EXCHANGE" "CONVERT" "LOAD"
+             "STORE" "EQ" "GT" "GE" "LT" "LE" "NOP" "INCLUDE" "PRAGMA" "PLUS" "MINUS"
+             "CONTROLLED" "DAGGER" "DECLARE" "HALT")
+         symbol-end)
+    (,(rx symbol-start (or "SIN" "COS" "SQRT" "EXP" "CIS" (+ (? "-") "pi") (+ (? "-") "i")
+                           "I" "X" "Y" "Z" "H" "CZ" "PHASE" "CPHASE" "S" "T" "CPHASE00" "CPHASE01"
+                           "CPHASE10" "RX" "RY" "RZ" "CNOT" "CCNOT" "PSWAP" "SWAP" "ISWAP" "CSWAP")
+          symbol-end)
+     . font-lock-builtin-face)
+    (,(rx symbol-start (or "DEFGATE" "DEFCIRCUIT") (1+ space) (group (1+ (or word ?_))) (0+ (or space word ?_)))
+     (1 font-lock-function-name-face))
+    (,(rx (+ (? "-") ?%) (1+ (or word ?_)))
+     . font-lock-variable-name-face))
+  "Quil mode syntax highlighting")
 
-(defvar quil-mode-syntax-table nil "Quil mode syntax table")
-(setf quil-mode-syntax-table
-      (let ((st (make-syntax-table)))
-        (modify-syntax-entry ?# "<" st)
-        (modify-syntax-entry ?\n ">" st)
-        st))
+(defvar quil-mode-syntax-table
+  (let ((st (make-syntax-table)))
+    (modify-syntax-entry ?# "<" st)
+    (modify-syntax-entry ?\n ">" st)
+    st)
+  "Quil mode syntax table")
 
 (defun quil-indent-line-function ()
   (let ((in-def* (save-excursion
