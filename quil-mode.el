@@ -58,17 +58,19 @@
   "Quil mode syntax table")
 
 (defun quil-indent-line-function ()
-  (let ((in-def* (save-excursion
-                   (beginning-of-line)
-                   (previous-line)
-                   (re-search-forward (rx (or "DEFGATE" "DEFCIRCUIT") (1+ (or space ?\( ?\) ?# ?_ word)) ?:)
-                                      (line-end-position) t))))
-    (if (or in-def*
-            (save-excursion
-              (previous-line)
-              (beginning-of-line-text)
-              (/= 0 (current-column))))
-        (indent-line-to 4))))
+  (if (or (save-excursion
+            ;; The previous line is a DEFGATE or DEFCIRCUIT
+            (beginning-of-line)
+            (previous-line)
+            (re-search-forward (rx (or "DEFGATE" "DEFCIRCUIT")
+                                   (1+ (or space ?\( ?\) ?# ?_ word)) ?:)
+                               (line-end-position) t))
+          (save-excursion
+            ;; Previous line is indent to column four
+            (previous-line)
+            (beginning-of-line-text)
+            (/= 0 (current-column))))
+      (indent-line-to 4)))
 
 ;;;###autoload
 (define-derived-mode quil-mode prog-mode "Quil"
