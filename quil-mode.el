@@ -33,8 +33,8 @@
 (defvar quil-font-lock-keywords
   `(;; Keywords
     ,(rx symbol-start
-         (or "DEFGATE" "DEFCIRCUIT" "MEASURE" "RESET" "HALT" "JUMP" "JUMPWHEN"
-             "JUMPUNLESS" "WAIT" "DECLARE" "NEG" "NOT" "TRUE" "FALSE" "AND" "OR" "LABEL"
+         (or "DEFGATE" "DEFCIRCUIT" "MEASURE" "RESET" "HALT" "JUMP" "JUMP-WHEN"
+             "JUMP-UNLESS" "WAIT" "DECLARE" "NEG" "NOT" "TRUE" "FALSE" "AND" "OR" "LABEL"
              "IOR" "XOR" "ADD" "SUB" "MUL" "DIV" "MOVE" "EXCHANGE" "CONVERT" "LOAD"
              "STORE" "EQ" "GT" "GE" "LT" "LE" "NOP" "INCLUDE" "PRAGMA" "PLUS" "MINUS"
              "CONTROLLED" "DAGGER" "DECLARE" "HALT")
