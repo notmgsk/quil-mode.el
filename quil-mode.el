@@ -34,14 +34,16 @@
   `(;; Keywords
     ,(rx symbol-start
          (or "DEFGATE" "DEFCIRCUIT" "MEASURE" "RESET" "HALT" "JUMP" "JUMP-WHEN"
-             "JUMP-UNLESS" "WAIT" "DECLARE" "NEG" "NOT" "TRUE" "FALSE" "AND" "OR" "LABEL"
+             "JUMP-UNLESS" "WAIT" "NEG" "NOT" "TRUE" "FALSE" "AND" "OR" "LABEL"
              "IOR" "XOR" "ADD" "SUB" "MUL" "DIV" "MOVE" "EXCHANGE" "CONVERT" "LOAD"
              "STORE" "EQ" "GT" "GE" "LT" "LE" "NOP" "INCLUDE" "PRAGMA" "PLUS" "MINUS"
-             "CONTROLLED" "DAGGER" "DECLARE" "HALT")
+             "CONTROLLED" "DAGGER" "DECLARE" "HALT" "FORKED" "SHARING" "OFFSET"
+	     "AS" "MATRIX" "PERMUTATION")
          symbol-end)
     (,(rx symbol-start (or "SIN" "COS" "SQRT" "EXP" "CIS" (+ (? "-") "pi") (+ (? "-") "i")
                            "I" "X" "Y" "Z" "H" "CZ" "PHASE" "CPHASE" "S" "T" "CPHASE00" "CPHASE01"
-                           "CPHASE10" "RX" "RY" "RZ" "CNOT" "CCNOT" "PSWAP" "SWAP" "ISWAP" "CSWAP")
+                           "CPHASE10" "RX" "RY" "RZ" "CNOT" "CCNOT" "PSWAP" "SWAP" "ISWAP" "CSWAP"
+			   "PISWAP")
           symbol-end)
      . font-lock-builtin-face)
     (,(rx symbol-start (or "DEFGATE" "DEFCIRCUIT") (1+ space) (group (1+ (or word ?_))) (0+ (or space word ?_)))

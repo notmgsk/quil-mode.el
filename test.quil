@@ -2,6 +2,13 @@ DEFGATE TESTGATE(%theta) A B:
     0, i,
     1, COS(-i*%theta)
 
+DEFGATE TESTMATRIX AS MATRIX:
+    0, 1,
+    1, 0
+
+DEFGATE TESTPERM AS PERMUTATION:
+    0, 3, 2, 1
+
 DEFCIRCUIT TESTCIRC A B:
     H A
     CNOT A B
