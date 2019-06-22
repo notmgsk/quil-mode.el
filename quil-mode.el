@@ -62,14 +62,13 @@
 (defun quil-indent-line-function ()
   (if (or (save-excursion
             ;; The previous line is a DEFGATE or DEFCIRCUIT
-            (beginning-of-line)
-            (previous-line)
+	    (forward-line -1)
             (re-search-forward (rx (or "DEFGATE" "DEFCIRCUIT")
                                    (1+ (or space ?\( ?\) ?# ?_ word)) ?:)
                                (line-end-position) t))
           (save-excursion
             ;; Previous line is indent to column four
-            (previous-line)
+            (forward-line -1)
             (beginning-of-line-text)
             (/= 0 (current-column))))
       (indent-line-to 4)))
