@@ -1,4 +1,4 @@
-# Colourful Quil
+# Qolourful Quil
 
 Emacs syntax highlighting for [Rigetti's Quantum Instruction Language](https://arxiv.org/abs/1608.03355).
 
