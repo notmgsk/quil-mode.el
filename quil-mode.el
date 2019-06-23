@@ -1,5 +1,9 @@
 ;;; quil-mode.el --- Emacs support for editing Quil code
 
+;;; Authors:
+;;;   - notmgsk
+;;;   - appleby
+
 ;;; Commentary:
 
 ;; Major mode for editing Quil code.
