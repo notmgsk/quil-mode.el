@@ -42,12 +42,12 @@
              "IOR" "XOR" "ADD" "SUB" "MUL" "DIV" "MOVE" "EXCHANGE" "CONVERT" "LOAD"
              "STORE" "EQ" "GT" "GE" "LT" "LE" "NOP" "INCLUDE" "PRAGMA" "PLUS" "MINUS"
              "CONTROLLED" "DAGGER" "DECLARE" "HALT" "FORKED" "SHARING" "OFFSET"
-	     "AS" "MATRIX" "PERMUTATION")
+             "AS" "MATRIX" "PERMUTATION")
          symbol-end)
     (,(rx symbol-start (or "SIN" "COS" "SQRT" "EXP" "CIS" (+ (? "-") "pi") (+ (? "-") "i")
                            "I" "X" "Y" "Z" "H" "CZ" "PHASE" "CPHASE" "S" "T" "CPHASE00" "CPHASE01"
                            "CPHASE10" "RX" "RY" "RZ" "CNOT" "CCNOT" "PSWAP" "SWAP" "ISWAP" "CSWAP"
-			   "PISWAP")
+                           "PISWAP")
           symbol-end)
      . font-lock-builtin-face)
     (,(rx symbol-start (or "DEFGATE" "DEFCIRCUIT") (1+ space) (group (1+ (or word ?_))) (0+ (or space word ?_)))
@@ -73,7 +73,7 @@
 (defun quil-indent-line-function ()
   (if (or (save-excursion
             ;; The previous line is a DEFGATE or DEFCIRCUIT
-	    (forward-line -1)
+            (forward-line -1)
             (re-search-forward (rx (or "DEFGATE" "DEFCIRCUIT")
                                    (1+ (or space ?\( ?\) ?# ?_ word)) ?:)
                                (line-end-position) t))
@@ -81,7 +81,7 @@
             ;; Previous line is indent to column four
             (forward-line -1)
             (quil-beginning-of-line-text-or-comment-start)
-	    (/= 0 (current-column))))
+            (/= 0 (current-column))))
       (indent-line-to 4)))
 
 ;;;###autoload
