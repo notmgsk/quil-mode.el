@@ -63,6 +63,13 @@
     st)
   "Quil mode syntax table")
 
+(defun quil-beginning-of-line-text-or-comment-start (&optional n)
+  "Move backwards to either `beginning-of-line-text' or the `comment-start'."
+  (beginning-of-line-text n)
+  (let ((comment-start (comment-search-backward (line-beginning-position) t)))
+    (when comment-start
+      (goto-char comment-start))))
+
 (defun quil-indent-line-function ()
   (if (or (save-excursion
             ;; The previous line is a DEFGATE or DEFCIRCUIT
@@ -73,8 +80,8 @@
           (save-excursion
             ;; Previous line is indent to column four
             (forward-line -1)
-            (beginning-of-line-text)
-            (/= 0 (current-column))))
+            (quil-beginning-of-line-text-or-comment-start)
+	    (/= 0 (current-column))))
       (indent-line-to 4)))
 
 ;;;###autoload

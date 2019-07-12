@@ -1,4 +1,9 @@
+# This is an example Quil file for testing quil-mode.
+# Check out the amazing multi-line comment indentation.
+
 DEFGATE TESTGATE(%theta) A B:
+    # You can have comments here, too.
+    # Multi-line ones? Sure, why not.
     0, i,
     1, COS(-i*%theta)
 
